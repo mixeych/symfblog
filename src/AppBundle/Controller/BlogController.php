@@ -26,6 +26,13 @@ class BlogController extends Controller
             $article->setTitle($title);
             $article->setContent($content);
             $article->setStatus("draft");
+            $validator = $this->get('validator');
+            $errors = $validator->validate($article);
+            if(count($errors) > 0){
+                $errorsString = (string) $errors;
+
+                return $this->render('blog/create.html.twig', ['title' => 'Новая статья', 'errors' => $errors]);
+            }
             
             $em = $this->getDoctrine()->getManager();
             // tells Doctrine you want to (eventually) save the Product (no queries yet)

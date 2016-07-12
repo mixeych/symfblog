@@ -1,5 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block body %}
+    {% if(errors) %}
+        {% for error in errors %}
+            <li>{{ error.message }}</li>
+        {% endfor %}
+    {% endif %}
     <form action="{{ url('create_article') }}" method="post" >
         <div class="form-group">
             <label for="title">Название Статьи</label>
