@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <form action="{{ url('create_article') }}" method="post" >
+        <div class="form-group">
+            <label for="title">Название Статьи</label>
+            <input class="form-control" id="title" type="text" name="title">
+        </div>
+        <div class="form-group">
+            <label for="content">Статья</label>
+            <textarea class="form-control" id="content" name="content"></textarea>
+            
+        </div>
+        <button type="submit" class="btn btn-success">Отправить</button>
+        
+    </form>
+{% endblock %}

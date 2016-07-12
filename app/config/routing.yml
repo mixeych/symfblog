@@ -1,0 +1,19 @@
+acme_test:
+    resource: "@AcmeTestBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+blog: 
+    path: "/"
+    defaults:  { _controller: AppBundle:Blog:main}
+    requirements:
+        _format:  html|rss
+create_article: 
+    prefix: "/blog"
+    path: "/create"
+    defaults:  { _controller: AppBundle:Blog:create}
+article:
+    path: "/blog/{articleId}"
+    defaults: {_controller: AppBundle:Blog:article}
