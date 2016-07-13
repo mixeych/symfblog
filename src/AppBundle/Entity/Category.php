@@ -1,7 +1,5 @@
 <?php
-
 namespace AppBundle\Entity;
-
 /**
  * Category
  */
@@ -11,7 +9,6 @@ class Category
      * @var int
      */
     private $id;
-
     /**
      * @var string
      */
@@ -20,7 +17,6 @@ class Category
     {
         $this->articles = new ArrayCollection();
     }
-
     /**
      * Get id
      *
@@ -30,7 +26,6 @@ class Category
     {
         return $this->id;
     }
-
     /**
      * Set name
      *
@@ -41,10 +36,8 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
-
         return $this;
     }
-
     /**
      * Get name
      *
@@ -58,8 +51,6 @@ class Category
      * @var \Doctrine\Common\Collections\Collection
      */
     private $articles;
-
-
     /**
      * Add article
      *
@@ -70,10 +61,8 @@ class Category
     public function addArticle(\AppBundle\Entity\Article $article)
     {
         $this->articles[] = $article;
-
         return $this;
     }
-
     /**
      * Remove article
      *
@@ -83,7 +72,6 @@ class Category
     {
         $this->articles->removeElement($article);
     }
-
     /**
      * Get articles
      *
@@ -94,3 +82,4 @@ class Category
         return $this->articles;
     }
 }
+

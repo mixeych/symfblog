@@ -1,1 +1,15 @@
-
+AppBundle\Entity\Article:
+    properties:
+        title:
+            - NotBlank: {message: Название статьи не должно быть пустым}
+        content:
+            - NotBlank: {message: Статья не должна быть пустой}
+            - Length: {min: 3, minMessage: Статья должна содержать мин 3 символа}
+#AppBundle\Entity\Category:
+#    constraints:
+#        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity: 
+#            fields: [name]
+#            message: 'Такая категория уже есть'
+#    properties:
+#        name:
+#            - NotBlank: {message: Название категории не должно быть пустым}

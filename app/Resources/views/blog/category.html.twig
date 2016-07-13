@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <p>Категории:</p>
+    {{ form_start(form) }}
+        {{form_row(form.name)}}
+    {{ form_end(form) }}
+    {% for category in categories %}
+        <div class="category">
+            {{category.name}}
+            <a class="del-category" href="javascript:void(0)">del</a>
+        </div>
+    {% endfor %}
+    
+
+{% endblock %}

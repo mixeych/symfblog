@@ -15,17 +15,13 @@ class Article
     /**
      * @var string
      */
-    /**
-     * @Assert\NotBlank(message = "Название не должно быть пустым")
-     */
+
     private $title;
 
     /**
      * @var string
      */
-    /**
-     * @Assert\NotBlank(message = "Статья не должна быть пустой")
-     */
+
     private $content;
 
     /**

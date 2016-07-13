@@ -17,3 +17,7 @@ create_article:
 article:
     path: "/blog/{articleId}"
     defaults: {_controller: AppBundle:Blog:article}
+category:
+    prefix: "/blog"
+    path: "/category"
+    defaults: {_controller: AppBundle:Blog:category}
