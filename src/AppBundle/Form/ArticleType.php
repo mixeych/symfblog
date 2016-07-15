@@ -6,15 +6,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use AppBundle\Form\CategoryType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 Class ArticleType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        
         $builder
             ->add('title')
             ->add('content', TextareaType::class)
-            ->add('save', SubmitType::class, array('label' => 'Отправить'))
+            ->add('category', EntityType::class, ["class" => 'AppBundle:Category', 'choice_label' => 'name'])
+            ->add('save', SubmitType::class, ['label' => 'Отправить'])
         ;
     }
     

@@ -3,7 +3,10 @@
     <div class="content">
         <p>{{article.content}}</p>
         <p class="date">{{article.createdAt.date}}</p>
+        <p class="category">{{category}}</p>
     </div>
-    
+    {{ form_start(form) }}
+        {{form_row(form.category)}}
+    {{ form_end(form) }}
 
 {% endblock %}

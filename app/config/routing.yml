@@ -21,3 +21,7 @@ category:
     prefix: "/blog"
     path: "/category"
     defaults: {_controller: AppBundle:Blog:category}
+show_category:
+    prefix: "/blog"
+    path: "/category/{categorySlug}"
+    defaults: {_controller: AppBundle:Blog:showCategory}

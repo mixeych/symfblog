@@ -13,7 +13,12 @@ AppBundle\Entity\Category:
             type: string
             length: 255
             unique: true
-    lifecycleCallbacks: {  }
+        slug:
+            type: string
+            length: 255
+            unique: true
+    lifecycleCallbacks: 
+        preRemove: [removeArticlesFromCategory]
     oneToMany:
         articles:
             targetEntity: Article

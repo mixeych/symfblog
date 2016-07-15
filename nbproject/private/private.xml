@@ -5,12 +5,7 @@
         <group>
             <file>file:/var/www/html/symfonyproject/src/AppBundle/Controller/BlogController.php</file>
             <file>file:/var/www/html/symfonyproject/app/config/routing.yml</file>
-            <file>file:/var/www/html/symfonyproject/src/AppBundle/Form/ArticleType.php</file>
             <file>file:/var/www/html/symfonyproject/src/AppBundle/Entity/Category.php</file>
-            <file>file:/var/www/html/symfonyproject/src/AppBundle/Resources/config/validation.yml</file>
-            <file>file:/var/www/html/symfonyproject/app/Resources/views/base.html.twig</file>
-            <file>file:/var/www/html/symfonyproject/src/AppBundle/Entity/Article.php</file>
-            <file>file:/var/www/html/symfonyproject/src/AppBundle/Form/CategoryType.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,15 +1,52 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <p>Категории:</p>
-    {{ form_start(form) }}
+   {{ form_start(form) }}
         {{form_row(form.name)}}
     {{ form_end(form) }}
+    <table class="category table">
+        <thead>
+            <tr>
+                <td>#</td>
+                <td>Название</td>
+            </tr>
+        </thead>
+        <tbody>
     {% for category in categories %}
-        <div class="category">
-            {{category.name}}
-            <a class="del-category" href="javascript:void(0)">del</a>
-        </div>
+            <tr>
+                <td><a class="del-category" data-del="{{category.id}}" href="javascript:void(0)">del</a></td>
+                <td>{{category.name}}</td>
+            </tr>
     {% endfor %}
+        </tbody>
+    </table>
     
 
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        $(".del-category").click(function(){
+            var conf = confirm("?");
+            if(!conf){
+                return false;
+            }
+            var id = $(this).attr("data-del");
+            var row = $(this).parents("tr");
+            
+            $.ajax({
+                method: "post",
+                data: {
+                    id: id
+                },
+                success: function(res){
+                    if(res){
+                        row.remove();
+                    }
+                }
+                
+            });
+        });
+    </script>
 {% endblock %}
