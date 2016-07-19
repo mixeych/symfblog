@@ -8,9 +8,10 @@
 
 <!-- Optional theme -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+            <link rel="icon" type="image/x-icon" href="{{ asset('favicon-weed.ico') }}" />
+            <link rel="stylesheet" href="/css/style.css" >
         {% endblock %}
-        {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
-        <link rel="stylesheet" href="/css/style.css" >
+        
     </head>
     <body>
         <div role="navigation" class="navbar navbar-inverse navbar-fixed-top">
@@ -30,21 +31,32 @@
                     <li><a href="{{url('create_article')}}">Добавить статью</a></li>
                     <li><a href="{{url('category')}}">Категории</a></li>
                 </ul>
-                <form role="form" class="navbar-form navbar-right">
-                  <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email">
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control" placeholder="Password">
-                  </div>
-                  <button class="btn btn-success" type="submit">Sign in</button>
-                </form>
+                {% block loginform %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <div class="nav navbar-right logout">
+                            <a class="btn btn-default" href="{{path('fos_user_security_logout')}}" role="button">Выйти</a>
+                        </div>
+                    {% else %}
+                        <form role="form" class="navbar-form navbar-right" action="{{ path("fos_user_security_check") }}" method="post" >
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                              <div class="form-group">
+                              <input type="text" class="form-control" name="_username" placeholder="Email" required="required">
+                            </div>
+                            <div class="form-group">
+                              <input type="password" class="form-control" name="_password" placeholder="Password" required="required">
+                            </div>
+                            <button name="_submit" class="btn btn-success" type="submit">Sign in</button>
+                          </form>
+                    {% endif %}
+                {% endblock %}
               </div><!--/.navbar-collapse -->
             </div>
         </div>
         <div id="wrapper">
             <div class="container">
+                {% block h1 %}
                 <h1 class="title">{{title}}</h1>
+                {% endblock %}
         {% block body %}{% endblock %}
             </div>
         </div>

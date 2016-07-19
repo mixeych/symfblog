@@ -25,3 +25,5 @@ show_category:
     prefix: "/blog"
     path: "/category/{categorySlug}"
     defaults: {_controller: AppBundle:Blog:showCategory}
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"

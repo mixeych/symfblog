@@ -170,4 +170,9 @@ class Article
     {
         return $this->category;
     }
+    
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+    }
 }

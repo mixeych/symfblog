@@ -20,7 +20,8 @@ AppBundle\Entity\Article:
         createdAt:
             type: datetime
             column: created_at
-    lifecycleCallbacks: {  }
+    lifecycleCallbacks: 
+         prePersist: [setCreatedAtValue]
     manyToOne:
         category:
             targetEntity: Category
