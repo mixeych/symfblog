@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <div class="content">
-        <p>{{article.content}}</p>
+        <p>{{article.content|raw}}</p>
         <p class="date">{{article.createdAt.date}}</p>
-        <p class="category">{{category}}</p>
+        <p class="category">Категория: {{category}}</p>
     </div>
+    {% if(is_granted('IS_AUTHENTICATED_FULLY') and app.user.roles[0] == 'ROLE_ADMIN') %}
     {{ form_start(form) }}
         {{form_row(form.category)}}
     {{ form_end(form) }}
-
+    {% endif %}
 {% endblock %}

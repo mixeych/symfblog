@@ -19,7 +19,7 @@ article:
     defaults: {_controller: AppBundle:Blog:article}
 category:
     prefix: "/blog"
-    path: "/category"
+    path: "/categories-list"
     defaults: {_controller: AppBundle:Blog:category}
 show_category:
     prefix: "/blog"

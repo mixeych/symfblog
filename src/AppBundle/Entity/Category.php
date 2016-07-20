@@ -153,4 +153,3 @@ class Category
 	return iconv("UTF-8","UTF-8//IGNORE",strtr($string,$replace));
     }
 }
-

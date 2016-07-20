@@ -29,4 +29,10 @@ AppBundle\Entity\Article:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+        user:
+            targetEntity: Acme\UserBundle\Entity\User
+            inversedBy: articles
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
     

@@ -132,21 +132,6 @@ class Article
      */
     private $category;
 
-
-    /**
-     * Set createdAt
-     *
-     * @param \DateTime $createdAt
-     *
-     * @return Article
-     */
-    public function setCreatedAt($createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     /**
      * Set category
      *
@@ -174,5 +159,33 @@ class Article
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
+    }
+
+    /**
+     * Set createdAt
+     *
+     * @param \DateTime $createdAt
+     *
+     * @return Article
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+    
+    private $user;
+    
+    public function setUser(Acme\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+    
+    public function getUser()
+    {
+        return $this->user;
     }
 }

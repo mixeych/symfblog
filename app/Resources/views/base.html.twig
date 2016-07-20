@@ -29,7 +29,9 @@
               <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{url('create_article')}}">Добавить статью</a></li>
+                    {% if(is_granted('IS_AUTHENTICATED_FULLY') and app.user.roles[0] == 'ROLE_ADMIN') %}
                     <li><a href="{{url('category')}}">Категории</a></li>
+                    {% endif %}
                 </ul>
                 {% block loginform %}
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -62,7 +64,7 @@
         </div>
         {% block javascripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="../../dist/js/bootstrap.min.js"></script>
+        {#<script src="{{asset('dist/js/bootstrap.min.js'}}}"></script>#}
         {% endblock %}
     </body>
 </html>

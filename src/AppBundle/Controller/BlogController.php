@@ -14,9 +14,10 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class BlogController extends Controller
 {
-
-    public function mainAction()
+    
+    protected function getCsrfToken()
     {
+        $csrfToken;
         if ($this->has('security.csrf.token_manager')) {
             $csrfToken = $this->get('security.csrf.token_manager')->getToken('authenticate')->getValue();
         } else {
@@ -25,6 +26,13 @@ class BlogController extends Controller
                 ? $this->get('form.csrf_provider')->generateCsrfToken('authenticate')
                 : null;
         }
+        return $csrfToken;
+    }
+
+    public function mainAction()
+    {
+        $csrfToken = $this->getCsrfToken();
+        
         $articles = $this->getDoctrine()->getRepository('AppBundle:Article')->findAll();
         return $this->render('blog/main.html.twig', ['title' => 'Блог', 'articles' => $articles, 'csrf_token' =>$csrfToken ]);
         
@@ -32,6 +40,7 @@ class BlogController extends Controller
     
     public function createAction(Request $request)
     {
+        $csrfToken = $this->getCsrfToken();
         $article = new Article();
         $article->setTitle('Название статьи'); // value= аттрибут
         $article->setContent('текст статьи'); // value= аттрибут
@@ -54,11 +63,12 @@ class BlogController extends Controller
             
             return $this->redirectToRoute('blog');
         }
-        return $this->render('blog/create.html.twig', ['title' => 'Новая статья', 'form' => $form->createView()]);
+        return $this->render('blog/create.html.twig', ['title' => 'Новая статья', 'form' => $form->createView(), 'csrf_token' =>$csrfToken]);
     }
     
     public function articleAction($articleId, Request $request)
     {
+        $csrfToken = $this->getCsrfToken();
         $article = $this->getDoctrine()->getRepository('AppBundle:Article')->find($articleId);
         if(!$article){
             throw $this->createNotFoundException('Статья не найдена');
@@ -81,11 +91,12 @@ class BlogController extends Controller
             $category = $article->getCategory()->getName();
         }
         
-        return $this->render('blog/singleArticle.html.twig', ['title' => $title, 'article' => $article, 'category' => $category, 'form' => $form->createView()]);
+        return $this->render('blog/singleArticle.html.twig', ['title' => $title, 'article' => $article, 'category' => $category, 'form' => $form->createView(), 'csrf_token' =>$csrfToken]);
     }
     
     public function categoryAction(Request $request)
     {
+        $csrfToken = $this->getCsrfToken();
         if($request->isXmlHttpRequest()){
             $id = $request->get('id');
             $em = $this->getDoctrine()->getManager();
@@ -108,7 +119,7 @@ class BlogController extends Controller
             $em->flush();
         }
         $categories = $this->getDoctrine()->getRepository('AppBundle:Category')->findAll();
-        return $this->render('blog/category.html.twig', ['title' => 'Категории', 'form' => $form->createView(), 'categories' => $categories]);
+        return $this->render('blog/category.html.twig', ['title' => 'Категории', 'form' => $form->createView(), 'categories' => $categories, 'csrf_token' =>$csrfToken]);
     }
     
     public function showCategory($categorySlug)

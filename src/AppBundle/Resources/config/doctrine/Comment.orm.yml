@@ -1,0 +1,25 @@
+AppBundle\Entity\Comment:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\CommentRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        userId:
+            type: integer
+            column: user_id
+        articleId:
+            type: integer
+            column: article_id
+        content:
+            type: string
+            length: '500'
+        createdAt:
+            type: datetime
+            column: created_at
+    lifecycleCallbacks: 
+         prePersist: [setCreatedAt]
